@@ -1,8 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import type { Node } from 'react'; // ReactNode，Typescript中的类型
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -24,20 +27,14 @@ import {
   CheckBox
 } from 'react-native-elements'
 
-import {
-  SafeAreaProvider
-} from 'react-native-safe-area-context';
-import { getUserInfo, storeUserInfo } from '../common/UserInfo';
 
-// 自定义模块
-import {
-  AppColors
-} from '../common/AppCommon'
+import { getUserInfo, storeUserInfo } from '../common/UserInfo'
+import { AppColors, SafeAreaStyle } from '../common/AppColors'
 
-import { UserInfo } from '../common/UserInfo';
+import { UserInfo } from '../common/UserInfo'
 
 
-const LoginView = () => {
+const LoginView = ({ navigation }) => {
 
   const [isSecurity, setisSecurity] = useState(true);
   const securityIcon = isSecurity ? 'eye-off' : 'eye';
@@ -83,7 +80,7 @@ const LoginView = () => {
     }
 
     storeUserInfo({ account: accountStr, password: pwdStr });
-    alert('登录');
+    navigation.navigate('Home')
   }
 
   return (
@@ -92,7 +89,7 @@ const LoginView = () => {
         onPress={() => { Keyboard.dismiss(); }}
         activeOpacity={1} style={{ flex: 1 }}
       >
-        <SafeAreaView style={AppColors.safeAreaStyle}>
+        <SafeAreaView style={SafeAreaStyle}>
           {/* 注意statusbar和内容是并列关系，非包含关系 */}
           <StatusBar barStyle={'dark-content'} />
           <View style={styles.settingView}>

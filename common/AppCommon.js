@@ -1,10 +1,7 @@
 
-// 导入通用模块
 
-import {AppColors, AppDarkMode, SafeAreaStyle} from './AppColors';
+// 没用，用的时候还是需要逐个导入，
+
+import {AppColors, SafeAreaStyle} from './AppColors';
 import UserInfo from './UserInfo';
-
-export {
-  AppColors,
-  UserInfo
-};
+import { pTx, pTd } from './AppSize';
