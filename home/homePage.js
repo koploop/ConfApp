@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Dimensions, TouchableHighlight } from 'react-native'
-import { View, StatusBar, StyleSheet, ImageBackground,useWindowDimensions } from 'react-native'
+import { View, StatusBar, StyleSheet, ImageBackground, useWindowDimensions } from 'react-native'
 import {
   Text,
   Button,
@@ -23,9 +23,7 @@ const HomeView = () => {
     <SafeAreaView edges={['right', 'bottom', 'left']} style={AppColors.safeAreaStyle}>
       <StatusBar barStyle={'light-content'} />
       <HomeHeader />
-      <Text>'1'</Text>
       <ContentV />
-      <Text>'11'</Text>
     </SafeAreaView>
   );
 }
@@ -70,11 +68,15 @@ const HomeHeader = () => {
 
 const ContentV = () => {
   const ConfPage = () => (
-    <View style={{backgroundColor: 'red'}} />
+    <View style={{ backgroundColor: 'red' }}>
+      <Text>'dddd'</Text>
+    </View>
   );
 
   const LivePage = () => (
-    <View style={{backgroundColor: 'blue' }} />
+    <View style={{ backgroundColor: 'blue' }}>
+      <Text>'dddd'</Text>
+    </View>
   );
 
   const [index, setIndex] = useState(0);
@@ -89,13 +91,15 @@ const ContentV = () => {
     live: LivePage,
   });
 
-  return <TabView
-    navigationState={{ index, routes }}
-    renderScene={renderScene}
-    onIndexChange={setIndex}
-    initialLayout={{ width: layout.width}}
-    style={{marginTop: 50}}
-  />
+  return <View style={{flex:1}}>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width, height: 100 }}
+      style={{ flex:1}}
+    />
+  </View>
 
 }
 
