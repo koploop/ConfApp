@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Dimensions } from 'react-native';
-
-import { View, StatusBar, StyleSheet, ImageBackground } from 'react-native';
+import React, { useState } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Dimensions, TouchableHighlight } from 'react-native'
+import { View, StatusBar, StyleSheet, ImageBackground,useWindowDimensions } from 'react-native'
 import {
   Text,
   Button,
@@ -12,33 +11,92 @@ import {
   Input,
   CheckBox
 } from 'react-native-elements'
+import { TabView, SceneMap } from 'react-native-tab-view';
 
-import { AppColors, SafeAreaStyle } from '../common/AppColors';
+import { AppColors, SafeAreaStyle } from '../common/AppColors'
 import { pTx, pTd } from '../common/AppSize';
+
 
 
 const HomeView = () => {
   return (
     <SafeAreaView edges={['right', 'bottom', 'left']} style={AppColors.safeAreaStyle}>
       <StatusBar barStyle={'light-content'} />
-      <HeaderView />
-
+      <HomeHeader />
+      <Text>'1'</Text>
+      <ContentV />
+      <Text>'11'</Text>
     </SafeAreaView>
   );
 }
 
-const HeaderView = () => {
+const HomeHeader = () => {
 
+  const btnList = [
+    {
+      img: require('../imgs/join_meet.png'),
+      title: '加入会议'
+    }, {
+      img: require('../imgs/create_meet.png'),
+      title: '发起会议'
+    }, {
+      img: require('../imgs/order_meet.png'),
+      title: '预约会议'
+    }
+  ];
   return (
     <View style={styles.headerView}>
       <ImageBackground source={require('../imgs/meeting_bg.png')} style={styles.bgImage}>
         <View style={styles.btnContainer}>
-          <Icon></Icon>
-          <Text>加入会议</Text>
+          {
+            btnList.map((item, index) => {
+              return <View >
+                <TouchableHighlight activeOpacity={0.6} underlayColor={"white"} onPress={() => alert('Pressed!')}>
+                  <Image
+                    source={item.img}
+                    style={styles.btnImg}
+                  />
+                </TouchableHighlight>
+                <Text style={styles.btnTitleStyle}>{item.title}</Text>
+              </View>
+            })
+          }
         </View>
       </ImageBackground>
     </View>
   );
+}
+
+
+const ContentV = () => {
+  const ConfPage = () => (
+    <View style={{backgroundColor: 'red'}} />
+  );
+
+  const LivePage = () => (
+    <View style={{backgroundColor: 'blue' }} />
+  );
+
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    { key: 'conf', title: '会议' },
+    { key: 'live', title: '直播' },
+  ]);
+
+  const layout = useWindowDimensions();
+  const renderScene = SceneMap({
+    conf: ConfPage,
+    live: LivePage,
+  });
+
+  return <TabView
+    navigationState={{ index, routes }}
+    renderScene={renderScene}
+    onIndexChange={setIndex}
+    initialLayout={{ width: layout.width}}
+    style={{marginTop: 50}}
+  />
+
 }
 
 const styles = StyleSheet.create({
@@ -49,20 +107,38 @@ const styles = StyleSheet.create({
   },
   headerView: {
     width: Dimensions.get('window').width,
-    height: pTx(218)
+    height: pTx(218),
+    // backgroundColor: 'gray',
   },
   btnContainer: {
     flex: 1,
-    flexDirection:'row',
+    flexDirection: 'row',
     justifyContent: 'space-evenly',
-    backgroundColor: 'red',
-    marginHorizontal: 20,
+    alignItems: 'center',
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    borderRadius: 4,
+    shadowColor: 'black',
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 4 },
+    width: Dimensions.get('window').width - 40,
     height: 134,
     position: 'absolute',
-    bottom: 40,
+    bottom: 0,
   },
-  iconStyle: {
-    
+  btnViewStyle: {
+    flexDirection: 'column',
+    backgroundColor: 'blue',
+  },
+  btnImg: {
+    width: 56,
+    height: 56,
+    borderRadius: 4
+  },
+  btnTitleStyle: {
+    marginTop: 8,
+    fontSize: 14,
+    color: '#212121'
   },
 });
 

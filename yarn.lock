@@ -5950,6 +5950,11 @@
     "react-native-ratings" "8.0.4"
     "react-native-size-matters" "^0.3.1"
 
+"react-native-pager-view@*", "react-native-pager-view@^5.4.9":
+  "integrity" "sha512-D6tzxpwMGdl6CXgtskGWhKRc5cJakCazESRGt7PkqnpyiH3N35ft1KmR82pCSQetAFlytFiToeu3a/dG5CELvA=="
+  "resolved" "https://registry.npmmirror.com/react-native-pager-view/download/react-native-pager-view-5.4.9.tgz"
+  "version" "5.4.9"
+
 "react-native-ratings@8.0.4":
   "integrity" "sha1-79XrrYrMCL+Y0005sY+3poE++ZE="
   "resolved" "https://registry.nlark.com/react-native-ratings/download/react-native-ratings-8.0.4.tgz"
@@ -5982,6 +5987,11 @@
   dependencies:
     "opencollective" "^1.0.3"
     "opencollective-postinstall" "^2.0.2"
+
+"react-native-tab-view@^3.1.1":
+  "integrity" "sha1-H416g1q09bGxQH7I3dwQU7U/o8Y="
+  "resolved" "https://registry.nlark.com/react-native-tab-view/download/react-native-tab-view-3.1.1.tgz"
+  "version" "3.1.1"
 
 "react-native-vector-icons@^8.1.0", "react-native-vector-icons@>7.0.0":
   "integrity" "sha1-6O4rF7xNn2Ntocb2f+7o4qhQw9g="

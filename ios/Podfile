@@ -15,7 +15,6 @@ target 'ConfApp' do
   )
 
   # 图标字体
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'ConfAppTests' do
     inherit! :complete
